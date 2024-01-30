@@ -1,10 +1,37 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
 import DayListItem from "./src/components/core/DayListItem";
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import {NovaSquare_400Regular} from "@expo-google-fonts/nova-square"
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 
-const days = [...Array(24)].map((val, index) => index+1)
+SplashScreen.preventAutoHideAsync();
+
+const days = [...Array(24)].map((val, index) => index + 1);
 
 export default function App() {
+  let [fontsLoaded, fontError] = useFonts({
+    Inter: Inter_900Black,
+    NovaSquare: NovaSquare_400Regular,
+  });
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -12,9 +39,7 @@ export default function App() {
         columnWrapperStyle={styles.column}
         numColumns={2}
         data={days}
-        renderItem={({ item }) => (
-          <DayListItem day={item} />
-        )}
+        renderItem={({ item }) => <DayListItem day={item} />}
       />
       <StatusBar style="auto" />
     </View>
@@ -28,7 +53,7 @@ const styles = StyleSheet.create({
   },
   content: {
     gap: 10,
-    padding: 10
+    padding: 10,
   },
   column: {
     gap: 10,
