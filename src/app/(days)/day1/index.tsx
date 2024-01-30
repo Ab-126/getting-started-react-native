@@ -1,12 +1,14 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from "react";
+import { View, Text } from "react-native";
+import { Stack } from "expo-router";
 
 const DayDetailsScreen = () => {
   return (
     <View>
-        <Text>Day Details Screen</Text>
+      <Stack.Screen options={{ title: "Day 1" }} />
+      <Text>Day Details Screen</Text>
     </View>
-  )
-}
+  );
+};
 
-export default DayDetailsScreen
+export default DayDetailsScreen;
