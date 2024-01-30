@@ -1,4 +1,5 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Link } from "expo-router";
 
 interface DayListItemProps {
   day: number;
@@ -6,9 +7,11 @@ interface DayListItemProps {
 
 function DayListItem({ day }: DayListItemProps) {
   return (
-    <View style={styles.box}>
-      <Text style={styles.text}>{day}</Text>
-    </View>
+    <Link href={"/day" + day} asChild>
+      <Pressable style={styles.box}>
+        <Text style={styles.text}>{day}</Text>
+      </Pressable>
+    </Link>
   );
 }
 
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#9B4521",
     fontSize: 70,
-    fontFamily: 'NovaSquare'
+    fontFamily: "NovaSquare",
   },
 });
 

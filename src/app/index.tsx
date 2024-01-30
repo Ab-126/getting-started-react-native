@@ -6,7 +6,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
-import DayListItem from "./src/components/core/DayListItem";
+import DayListItem from "../components/core/DayListItem";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import {NovaSquare_400Regular} from "@expo-google-fonts/nova-square"
 import * as SplashScreen from "expo-splash-screen";
@@ -16,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 
 const days = [...Array(24)].map((val, index) => index + 1);
 
-export default function App() {
+export default function HomeScreen() {
   let [fontsLoaded, fontError] = useFonts({
     Inter: Inter_900Black,
     NovaSquare: NovaSquare_400Regular,
