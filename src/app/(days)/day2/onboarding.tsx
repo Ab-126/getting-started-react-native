@@ -3,6 +3,11 @@ import { Stack, router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import {
+  GestureDetector,
+  Gesture,
+  Directions,
+} from "react-native-gesture-handler";
 
 const onboardingSteps = [
   {
@@ -36,50 +41,71 @@ export default function OnboardingScreen() {
     }
   };
 
+  const onBack = () => {
+    const isFirstScreen = screenIndex === 0;
+    if (isFirstScreen) {
+      endOnboarding();
+    } else {
+      setScreenIndex(screenIndex - 1);
+    }
+  };
+
   const endOnboarding = () => {
     setScreenIndex(0);
     router.back();
   };
 
+  const swipeForward = Gesture.Fling()
+    .direction(Directions.LEFT)
+    .onEnd(onContinue);
+
+  const swipeBackward = Gesture.Fling()
+    .direction(Directions.RIGHT)
+    .onEnd(onBack);
+
+  const composed = Gesture.Simultaneous(swipeBackward, swipeForward);
+
   return (
     <View style={styles.page}>
       <Stack.Screen options={{ headerShown: false }} />
       <StatusBar style="light" />
-      <View style={styles.pageContent}>
-        <View style={styles.stepIndicatorContainer}>
-          {onboardingSteps.map((step, index) => (
-            <View
-              key={step.title}
-              style={[
-                styles.stepIndicator,
-                { backgroundColor: index === screenIndex ? "#CEF202" : "gray" },
-              ]}
-            />
-          ))}
-        </View>
+      <View style={styles.stepIndicatorContainer}>
+        {onboardingSteps.map((step, index) => (
+          <View
+            key={step.title}
+            style={[
+              styles.stepIndicator,
+              { backgroundColor: index === screenIndex ? "#CEF202" : "gray" },
+            ]}
+          />
+        ))}
+      </View>
 
-        <FontAwesome5
-          style={styles.image}
-          name={data.icon}
-          size={100}
-          color="#CEF202"
-        />
+      <GestureDetector gesture={composed}>
+        <View style={styles.pageContent}>
+          <FontAwesome5
+            style={styles.image}
+            name={data.icon}
+            size={100}
+            color="#CEF202"
+          />
 
-        <View style={styles.footer}>
-          <Text style={styles.title}>{data.title}</Text>
-          <Text style={styles.description}>{data.description}</Text>
-          <View style={styles.buttonsRow}>
-            <Text style={styles.buttonText} onPress={endOnboarding}>
-              Skip
-            </Text>
-            <Pressable style={styles.button}>
-              <Text style={styles.buttonText} onPress={onContinue}>
-                Continue
+          <View style={styles.footer}>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.description}>{data.description}</Text>
+            <View style={styles.buttonsRow}>
+              <Text style={styles.buttonText} onPress={endOnboarding}>
+                Skip
               </Text>
-            </Pressable>
+              <Pressable style={styles.button}>
+                <Text style={styles.buttonText} onPress={onContinue}>
+                  Continue
+                </Text>
+              </Pressable>
+            </View>
           </View>
         </View>
-      </View>
+      </GestureDetector>
     </View>
   );
 }
@@ -139,6 +165,7 @@ const styles = StyleSheet.create({
   },
   stepIndicatorContainer: {
     flexDirection: "row",
+    margin: 15,
     gap: 5,
   },
   stepIndicator: {

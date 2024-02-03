@@ -8,6 +8,7 @@ import {
 import { NovaSquare_400Regular } from "@expo-google-fonts/nova-square";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function RootLayout() {
   let [fontsLoaded, fontError] = useFonts({
@@ -28,8 +29,10 @@ export default function RootLayout() {
     return null;
   }
   return (
-    <Stack screenOptions={{}}>
-      <Stack.Screen name="index" options={{ title: "DEVember" }} />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack screenOptions={{}}>
+        <Stack.Screen name="index" options={{ title: "DEVember" }} />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }
