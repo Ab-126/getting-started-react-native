@@ -8,6 +8,11 @@ import {
   Gesture,
   Directions,
 } from "react-native-gesture-handler";
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInLeft,
+} from "react-native-reanimated";
 
 const onboardingSteps = [
   {
@@ -21,7 +26,7 @@ const onboardingSteps = [
     description: `We will build 24 projects with React Native and Expo`,
   },
   {
-    icon: "people-arrows",
+    icon: "book-reader",
     title: "Education for Children",
     description: `Contribute to the fundraiser "Education for children" to help Save the Children in their effort of providing to every children`,
   },
@@ -82,17 +87,26 @@ export default function OnboardingScreen() {
       </View>
 
       <GestureDetector gesture={composed}>
-        <View style={styles.pageContent}>
-          <FontAwesome5
-            style={styles.image}
-            name={data.icon}
-            size={100}
-            color="#CEF202"
-          />
+        <View style={styles.pageContent} key={screenIndex}>
+          <Animated.View entering={FadeIn} exiting={FadeOut}>
+            <FontAwesome5
+              style={styles.image}
+              name={data.icon}
+              size={100}
+              color="#CEF202"
+            />
+          </Animated.View>
 
           <View style={styles.footer}>
-            <Text style={styles.title}>{data.title}</Text>
-            <Text style={styles.description}>{data.description}</Text>
+            <Animated.Text entering={SlideInLeft} style={styles.title}>
+              {data.title}
+            </Animated.Text>
+            <Animated.Text
+              entering={SlideInLeft.delay(200)}
+              style={styles.description}
+            >
+              {data.description}
+            </Animated.Text>
             <View style={styles.buttonsRow}>
               <Text style={styles.buttonText} onPress={endOnboarding}>
                 Skip
