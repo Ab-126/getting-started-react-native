@@ -1,64 +1,85 @@
 import MarkdownDisplay from "@/components/day3/MarkdownDisplay";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { useState } from "react";
+import { Text, View, StyleSheet, Pressable, TextInput } from "react-native";
 import Markdown from "react-native-markdown-display";
 
-const copy =
-  `# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
-*Italic Text*
-**Bold Text**
-- Item 1
-- Item 2
-  - Subitem 2.1
-  - Subitem 2.2
-- Item 3
-1. First item
-2. Second item
-3. Third item
-   1. Subitem 3.1
-   2. Subitem 3.2
-   [Visit OpenAI](https://www.openai.com)
-   ![Iron Man](https://cdn.kobo.com/book-images/2c24147a-0fa8-4eae-b183-8da05112d192/1200/1200/False/iron-man-3-suits-of-armor.jpg)
-` +
-  "```python" +
-  "\n" +
-  "print('Hello World')" +
-  "\n" +
-  "```" +
-  "\n" +
-  "```" +
-  `> This is a blockquote.
----
+const template = `
+# Markdown editor
+
+Hello **World**!
 `;
 
 const EditorScreen = () => {
-  return <MarkdownDisplay>{copy}</MarkdownDisplay>;
-};
+  const [content, setContent] = useState(template);
+  const [tab, setTab] = useState("preview");
 
-const markdownStyles = StyleSheet.create({
-  heading1: {
-    fontFamily: "InterBlack",
-    color: "#212020",
-  },
-  heading2: {
-    fontFamily: "InterBold",
-    color: "#404040",
-  },
-  body: {
-    fontSize: 16,
-    fontFamily: "Inter",
-  },
-});
+  return (
+    <View style={styles.page}>
+      <View style={styles.tabsContainer}>
+        <Pressable
+          onPress={() => setTab("edit")}
+          style={[
+            styles.tab,
+            { backgroundColor: tab === "edit" ? "pink" : "whitesmoke" },
+          ]}
+        >
+          <Text style={styles.tabText}>Edit</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => setTab("preview")}
+          style={[
+            styles.tab,
+            { backgroundColor: tab === "preview" ? "pink" : "whitesmoke" },
+          ]}
+        >
+          <Text style={styles.tabText}>Preview</Text>
+        </Pressable>
+      </View>
+
+      {tab === "edit" ? (
+        <TextInput
+          style={styles.input}
+          onChangeText={setContent}
+          numberOfLines={50}
+          value={content}
+          multiline
+        />
+      ) : (
+        <MarkdownDisplay>{content}</MarkdownDisplay>
+      )}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: "white",
+    backgroundColor: "whitesmoke",
     flex: 1,
     padding: 10,
+  },
+  input: {
+    backgroundColor: "white",
+    flex: 1,
+    padding: 20,
+    borderRadius: 10,
+    textAlignVertical: "top",
+    fontSize: 16,
+  },
+  tabsContainer: {
+    flexDirection: "row",
+    gap: 10,
+    marginVertical: 10,
+  },
+  tab: {
+    flex: 1,
+    padding: 10,
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  tabText: {
+    fontFamily: "InterBold",
   },
 });
 
