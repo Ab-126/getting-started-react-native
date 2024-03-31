@@ -16,6 +16,9 @@ const DayDetailsScreen = () => {
       <Link href={"/day4/animation"} asChild>
         <Button title="Go to editor" />
       </Link>
+      <Link href={"/day4/splash"} asChild>
+        <Button title="Go to the splash screen animation" />
+      </Link>
     </View>
   );
 };
