@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "title": "Modern Studio Apartment",
+        "price": 6000,
+        "latitude": 30.681569,
+        "longitude": 76.726048,
+        "rating": 4,
+        "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750"
+    },
+    {
+        "id": 2,
+        "title": "Charming Loft near City Center",
+        "price": 8000,
+        "latitude": 30.7036,
+        "longitude": 76.7179,
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1553664511-3aa50b7d0a64"
+    },
+    {
+        "id": 3,
+        "title": "Riverside Retreat",
+        "price": 12000,
+        "latitude": 30.7069,
+        "longitude": 76.6932,
+        "rating": 4,
+        "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750"
+    },
+    {
+        "id": 4,
+        "title": "Cozy Cottage in the Woods",
+        "price": 10000,
+        "latitude": 30.6921,
+        "longitude": 76.7307,
+        "rating": 4,
+        "image": "https://images.unsplash.com/photo-1515378960530-7c0da6231fb1"
+    },
+    {
+        "id": 5,
+        "title": "Downtown Luxury Penthouse",
+        "price": 20000,
+        "latitude": 30.6929,
+        "longitude": 76.7127,
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1568704746912-6a6ef9f1617b"
+    },
+    {
+        "id": 6,
+        "title": "Modern Apartment with City Views",
+        "price": 9000,
+        "latitude": 30.7025,
+        "longitude": 76.7093,
+        "rating": 4,
+        "image": "https://images.unsplash.com/photo-1578924568078-5fcf5391e7c8"
+    },
+    {
+        "id": 7,
+        "title": "Seaside Villa with Private Beach",
+        "price": 15000,
+        "latitude": 30.6875,
+        "longitude": 76.7128,
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1600856852893-76f94bd10bc9"
+    },
+    {
+        "id": 8,
+        "title": "Historic Townhouse in Old City",
+        "price": 11000,
+        "latitude": 30.7032,
+        "longitude": 76.7185,
+        "rating": 4,
+        "image": "https://images.unsplash.com/photo-1600856852893-76f94bd10bc9"
+    },
+    {
+        "id": 9,
+        "title": "Ski Chalet with Mountain Views",
+        "price": 18000,
+        "latitude": 30.6902,
+        "longitude": 76.7053,
+        "rating": 5,
+        "image": "https://images.unsplash.com/photo-1575507435693-dbf7cdeebf24"
+    },
+    {
+        "id": 10,
+        "title": "Elegant Townhouse near Park",
+        "price": 8500,
+        "latitude": 30.7012,
+        "longitude": 76.7214,
+        "rating": 4,
+        "image": "https://images.unsplash.com/photo-1569104308047-d4e4c31c23c0"
+    }
+]
