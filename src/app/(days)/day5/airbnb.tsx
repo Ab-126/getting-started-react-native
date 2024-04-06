@@ -5,7 +5,10 @@ import { Stack } from "expo-router";
 import appartments from "assets/data/day5/apartment.json";
 import CustomMarker from "@/components/day5/customMarker";
 import AppartmentListItem from "@/components/day5/AppartmentListItem";
-import BottomSheet, { BottomSheetFlatList } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetFlatList,
+  useGestureEventsHandlersDefault,
+} from "@gorhom/bottom-sheet";
 
 export default function AirbnbScreen() {
   const [selectedApartment, setSelectedApartment] = useState(null);
@@ -46,10 +49,7 @@ export default function AirbnbScreen() {
         </View>
       )}
 
-      <BottomSheet
-        index={0}
-        snapPoints={snapPoints}
-      >
+      <BottomSheet index={0} snapPoints={snapPoints}>
         <View style={{ flex: 1 }}>
           <Text style={styles.listTitle}>Over {appartments.length} places</Text>
           <BottomSheetFlatList
